@@ -1,0 +1,130 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  /*border: 1px solid black;*/
+}
+
+html {
+  background-color: #FFF;
+  font-family: Orgon-Slab;
+}
+
+@font-face {
+  font-family: "Tungsten";
+  src: url(Oswald-Regular.ttf) format("truetype");
+}
+
+@font-face {
+  font-family: "Orgon-Slab";
+  src: url(RobotoSlab-Regular.ttf) format("truetype");
+}
+
+a {
+  text-decoration: none;
+  font-size: inherit;
+  color: inherit;
+}
+
+header {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 3.5em;
+  background-color: #F5F5F5;
+  z-index: 1;
+  min-width: 750px;
+}
+
+header * {
+  display: inline-block;
+  color: #509E2F; /*S&T Apple*/
+  vertical-align: middle;
+
+}
+
+header h1 {
+  font-family: Tungsten;
+  font-size: 1.7em;
+  cursor: pointer;
+}
+
+#nav {
+  margin-right: 2%;
+  right: 0;
+  position: absolute;
+  line-height: 3.2em;
+}
+
+#nav a {
+  display: inline-block;
+  margin: .2em;
+  font-size: 1em;
+  text-decoration: none;
+}
+
+#nav a:hover {
+  text-decoration: underline;
+  color: #458929;
+}
+
+header img {
+  width: 45px;
+  height: 45px;
+  margin-left: 1em;
+  margin-bottom: 4px;
+  margin-right: .5em;
+  verical-align: center;
+}
+
+#welcome {
+  margin-top: 18%;
+  text-align: center;
+}
+
+#welcome h2 {
+  font-size: 2.5em;
+  padding-bottom: 2%;
+}
+
+#welcome p {
+  font-size: 1.5em;
+}
+
+.form-wrapper {
+  margin: 4.5em 0em 0em 3em;
+  font-size: 1em;
+}
+
+.form-wrapper h2, .form-wrapper .show-hide {
+  display: inline-block;
+}
+
+.form-wrapper h2 {
+  font-size: 1.5em;
+  padding-bottom: 1%;
+  padding-right: 1%;
+}
+
+.form-wrapper .show-hide {
+  max-width: 1em;
+  max-height: 1em;
+}
+
+.form-wrapper p {
+  padding-right: 1%;
+}
+
+.form-wrapper th, .form-wrapper td {
+  border: 1px solid black;
+  padding: .5em;
+}
+
+.form-wrapper th {
+
+  text-align: left;
+}
+
+.error {
+  color: red;
+}
