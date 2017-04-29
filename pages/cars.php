@@ -1,37 +1,19 @@
 <?php
-  $servername = "localhost";
-  $username = "wwloreyx_admin";
-  $password = "heck";
-  $dbName = "wwloreyx_SCTEEDB";
+  include '../php/db_connect.php';
+  include '../php/main.php';
 
-  //Create connection
-  $conn = new mysqli($servername, $username, $password, $dbName);
-
-  //Check connection
-  if ($conn->connect_error) {
-      die("Connection failed: " . $conn->connect_error);
-  }
-
-  //SQL Prepared Statements - prepare and bind
+  // Create SQL Prepared Statements - prepare and bind
   $insertVehicle = $conn->prepare("INSERT INTO VEHICLE VALUES (?, ?)");
   $insertVehicle->bind_param("si", $carName, $yearCompleted);
 
-  //Function declarations
-  function correct_input($data) {
-    $data = trim($data);
-    $data = stripslashes($data);
-    $data = htmlspecialchars($data);
-    return $data;
-  }
-
-  //Instantiate input variables for car-form form
+  // Instantiate input variables for car-form form
   $carName = $yearCompleted = "";
   $pushData = true;
   $hasError = false;
 
   $nameErr = "";
 
-  //Get input from form and validate it
+  // Get input from form and validate it
   if($_SERVER["REQUEST_METHOD"] == "POST") {
     if(empty($_POST["name"])) {
       //Set error messages if invalid data
@@ -59,13 +41,12 @@
   <link href="../resources/icon.png" rel="icon"/>
   <title>SCT | Cars</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <script src="../main.js"></script>
 </head>
 
 <body>
 
   <header>
-    <img src="../resources/large_sunburst.png"/>
+    <a href="../index.html"><img src="../resources/large_sunburst.png"></a>
     <h1>SCT | Cars</h1>
 
     <div id="nav">
@@ -114,7 +95,7 @@
 
         // If the query returns results
         if ($result->num_rows > 0) {
-            // output data of each row
+            // Output data of each row
             while($row = $result->fetch_assoc()) {
               echo("<tr><td>" . $row["NAME"] . "</td>
                 <td>" . $row["YEAR_COMPLETED"] . "</td></tr>");
@@ -123,12 +104,15 @@
       ?>
     </table>
   </div>
+  <br/><br/>
 
   <?php //echo("<script src='../main.js'>window.onload = displayElemIfError('car-form'," .$hasError. "); console.log(" . $hasError . "11)</script>");  ?>
+  <script src="../main.js"></script>
 </body>
 </html>
 
 <?php
+  // Close the prepared statements and DB connection
   $insertVehicle->close();
   $conn->close();
 ?>

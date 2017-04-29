@@ -46,7 +46,6 @@ header * {
 header h1 {
   font-family: Tungsten;
   font-size: 1.7em;
-  cursor: pointer;
 }
 
 #nav {
@@ -121,7 +120,6 @@ header img {
 }
 
 .form-wrapper th {
-
   text-align: left;
 }
 
