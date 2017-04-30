@@ -1,8 +1,6 @@
 # SCT_Electrical_DB
-CS2300 Introduction to Database Systems class project | S&T Solar Car Electrical Component Database
+CS2300 Introduction to Database Systems class project | S&T Solar Car Team Electrical Database
 
-A mySQL database is interfaced with using web languages and PHP. This software will be used by the
-[S&T Solar Car Team](https://solarcar.mst.edu/) to catalog electrical components, systems on the car,
-and team member information.
+The data is stored in a mySQL database and PHP along with HTML and Javascript are used to interface with it and handle user interaction. This software will be used by the [S&T Solar Car Team](https://solarcar.mst.edu/) to catalog electrical components, team member information, systems on the car, and cars themselves.
 
-The application is currently hosted [here](http://wwlorey.x10host.com/sct_db/)
+The application is currently hosted [here](http://solar.williamlorey.com).

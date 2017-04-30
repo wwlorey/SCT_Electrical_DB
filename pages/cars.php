@@ -7,6 +7,7 @@
   // Instantiate variables
   $newCarName = $yearCompleted = $selectCarName = $nameErr = $newCarOpen =
   $carInfoOpen = "";
+  $newCarActive = $viewCarInfoActive = $submitSuccessful = False; // Used in displaying the correct elements and other content
 
   // Create SQL Prepared Statements - prepare then bind
   // NOTE: Prepared staements are reserved for database updates NOT queries and retrievals
@@ -29,73 +30,77 @@
   // Get input from the forms and validate it
   // There is new input to process
   if($_SERVER["REQUEST_METHOD"] == "POST") {
-
-    // TODO: check to see what is hidden, validate variables based on that
-
     if(!empty($_POST['submit-new-car'])) { // The new car submission form has new input
+      // Make sure we display the correct element, hide the other(s)
+      $newCarActive = True;
+      $viewCarInfoActive = False;
       if(empty($_POST["name"])) { // The car nam field is empty
         // Set error message if invalid data
         $nameErr = "Name is required";
       }
       else {
         // Update the add new car variables
-        $newCarName = correct_input($_POST["name"]); // Validate the raw input
+        $newCarName = correctInput($_POST["name"]); // Validate the raw input
         $yearCompleted = $_POST["year"];
 
         // Push change to the DB
         $insertVehicle->execute();
+
+        // Mark the submission as successful so the user knows
+        $submitSuccessful = True;
       }
     }
 
     if(!empty($_POST['submit-choose-car'])) { // The select car name form has new input
+      // Make sure we display the correct element, hide the other(s)
+      $viewCarInfoActive = True;
+      $newCarActive = False;
       // Update the select car variable
       $selectCarName = $_POST["nameSelect"];
     }
   }
-  // NOTE: There is no need to validate input from the drop down menus
+  // NOTE: There is no need to validate input from drop down menus
 ?>
 
 <html>
 <head>
-  <?php include "../php/head.php"; ?>
+  <?php include "../php/head.php"; ?> <!-- The bulk of the head is repeated accross PHP pages, so we include it -->
   <title>SCT | Cars</title>
 </head>
 
 <body>
-  <header>
-    <a href="../index.html"><img src="../resources/large_sunburst.png"></a>
-    <h1>SCT | Cars</h1>
-
-    <div id="nav">
-      <a href="team_members.php">Team Members</a>
-      <a href="cars.php">Cars</a>
-      <a href="systems.php">Systems</a>
-      <a href="races.php">Races</a>
-    </div>
-  </header>
-
+  <!-- Header -->
+  <?php includeHeader("Cars"); ?>
 
   <!-- Submit new car form  -->
   <div class="form-wrapper">
     <h2>Record new car</h2>
     <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-car');"/>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-car" style="display: block;">
+    <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-car" style="display: <?php setDisplay($newCarActive); ?>">
       <p>Car Name:</p><input type="text" name="name"/>
       <span class="error">* <?php echo $nameErr;?></span>
-      <br><br>
+      <br/><br/>
 
       <p>Year Completed:</p>
       <select name="year">
       <?php
+        // Display a list of years from 2018 to 1993 as options
         for($i = 2018; $i >=1993; $i--) {
           echo("<option value='" . $i . "'>" . $i . "</option>");
         }
       ?>
       </select>
-      <br><br>
+      <br/><br/>
 
       <input type="submit" name="submit-new-car" value="Submit"/>
+      <br/><br/>
+      <?php
+        // Show the user their update was successful
+        if($submitSuccessful)
+          echo(SUBMIT_SUCCESS);
+      ?>
     </form>
   </div>
 
@@ -105,7 +110,7 @@
     <h2>View car information</h2>
     <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('car-info-view');"/>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" style="display: block;">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" style="display: <?php setDisplay($viewCarInfoActive); ?>">
       <p>Select car name:</p>
       <select name="nameSelect">
         <option value = <?php echo("'" . $selectCarName . "'"); ?>> <?php echo($selectCarName) ?> </option>
@@ -127,7 +132,7 @@
       <br/><br/>
     </form>
 
-    <table id="car-info-view" style="display: block;">
+    <table id="car-info-view" style="display: <?php setDisplay($viewCarInfoActive); ?>">
       <?php
         $sqlCode = $carAndDriverInfo . "'$selectCarName';";
         $result = $conn->query($sqlCode);
@@ -148,7 +153,7 @@
           }
         }
         else if($selectCarName != "") {
-          echo("<p>There are no recorded drivers for the given vehicle.</p>");
+          echo("<p class='error'>There are no recorded drivers for the given vehicle.</p>");
         }
       ?>
     </table>
@@ -181,10 +186,7 @@
   </div>
   <br/><br/>
 
-
-
-  <script src="../javascript/main.js"></script>
-  <script src="../javascript/cars.js"></script>
+  <script src="../main.js"></script>
 </body>
 </html>
 

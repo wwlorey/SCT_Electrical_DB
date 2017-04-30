@@ -126,3 +126,7 @@ header img {
 .error {
   color: red;
 }
+
+.success {
+  color: green;
+}
