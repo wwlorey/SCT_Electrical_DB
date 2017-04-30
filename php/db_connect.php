@@ -1,11 +1,13 @@
+<!-- Establishes connection to the mySQL database -->
+
 <?php
-  // Credentials for logging into DB
+  // Credentials for logging into the DB
   $servername = "localhost";
   $username = "wwloreyx_admin";
   $password = "heck";
   $dbName = "wwloreyx_SCTEEDB";
 
-  // Create DB connection
+  // Create connection
   $conn = new mysqli($servername, $username, $password, $dbName);
 
   // Check connection

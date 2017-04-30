@@ -1,3 +1,5 @@
+<!-- General functions used accross all pages -->
+
 <?php
   // Function declarations
   function correct_input($data) {
