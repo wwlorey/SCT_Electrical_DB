@@ -5,8 +5,7 @@
   require_once('../php/main.php');
 
   // Instantiate variables
-  $newCarName = $yearCompleted = $selectCarName = $nameErr = $newCarOpen =
-  $carInfoOpen = "";
+  $newCarName = $yearCompleted = $selectCarName = $nameErr = $newCarOpen = $carInfoOpen = "";
   $newCarActive = $viewCarInfoActive = $submitSuccessful = False; // Used in displaying the correct elements and other content
 
   // Create SQL Prepared Statements - prepare then bind
@@ -23,8 +22,8 @@
 
   // Retrieve information about the drivers of a given car
   // That car's name ("'$selectCarName';") is appended to the query once it is determined
-  $carAndDriverInfo = "SELECT CAR_NAME, YEAR_COMPLETED, TEAM_MEMBER.NAME, POSITION
-  FROM TEAM_MEMBER , DRIVE, VEHICLE WHERE DRIVE.CAR_NAME = VEHICLE.NAME
+  $carAndDriverInfo = "SELECT CAR_NAME, TEAM_MEMBER.NAME, POSITION
+  FROM TEAM_MEMBER, DRIVE, VEHICLE WHERE DRIVE.CAR_NAME = VEHICLE.NAME
   AND DRIVE.SSO = TEAM_MEMBER.SSO AND VEHICLE.NAME = ";
 
   // Get input from the forms and validate it
@@ -34,7 +33,7 @@
       // Make sure we display the correct element, hide the other(s)
       $newCarActive = True;
       $viewCarInfoActive = False;
-      if(empty($_POST["name"])) { // The car nam field is empty
+      if(empty($_POST["name"])) { // The car name field is empty
         // Set error message if invalid data
         $nameErr = "Name is required";
       }
@@ -63,13 +62,9 @@
 ?>
 
 <html>
-<head>
-  <?php include "../php/head.php"; ?> <!-- The bulk of the head is repeated accross PHP pages, so we include it -->
-  <title>SCT | Cars</title>
-</head>
+<?php includeHead("Cars"); ?>
 
 <body>
-  <!-- Header -->
   <?php includeHeader("Cars"); ?>
 
   <!-- Submit new car form  -->
@@ -78,7 +73,7 @@
     <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-car');"/>
 
     <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-car" style="display: <?php setDisplay($newCarActive); ?>">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-car" <?php setDisplay($newCarActive); ?>>
       <p>Car Name:</p><input type="text" name="name"/>
       <span class="error">* <?php echo $nameErr;?></span>
       <br/><br/>
@@ -105,19 +100,19 @@
   </div>
 
 
-  <!-- View car information form - the user can select a car to see more info. about -->
+  <!-- View car drivers form - the user can select a car to see more info. about -->
   <div class="form-wrapper">
-    <h2>View car information</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('car-info-view');"/>
+    <h2>View drivers</h2>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('driver-view');"/>
 
-    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" style="display: <?php setDisplay($viewCarInfoActive); ?>">
+    <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" <?php setDisplay($viewCarInfoActive); ?>>
       <p>Select car name:</p>
       <select name="nameSelect">
         <option value = <?php echo("'" . $selectCarName . "'"); ?>> <?php echo($selectCarName) ?> </option>
         <?php
           $result = $conn->query($allCarNames);
           // If the query returns results
-          if ($result->num_rows > 0) {
+          if($result->num_rows > 0) {
               // Display the data in each row as an option
               while($row = $result->fetch_assoc()) {
                 echo("<option value='" . $row[NAME] . "'>" . $row[NAME] . "</option>");
@@ -132,7 +127,7 @@
       <br/><br/>
     </form>
 
-    <table id="car-info-view" style="display: <?php setDisplay($viewCarInfoActive); ?>">
+    <table id="driver-view" <?php setDisplay($viewCarInfoActive); ?>>
       <?php
         $sqlCode = $carAndDriverInfo . "'$selectCarName';";
         $result = $conn->query($sqlCode);
@@ -140,14 +135,12 @@
         if($result->num_rows > 0) {
           // Echo the table header
           echo("<tr><th>Car Name</th>
-            <th>Year Completed</th>
             <th>Driver Name</th>
             <th>Driver's Position on Team</th></tr>");
 
           // Output data of each row
           while($row = $result->fetch_assoc()) {
             echo("<tr><td>" . $row["CAR_NAME"] . "</td>
-              <td>" . $row["YEAR_COMPLETED"] . "</td>
               <td>" . $row["NAME"] . "</td>
               <td>" . $row["POSITION"] . "</td></tr>");
           }
@@ -174,7 +167,7 @@
         $result = $conn->query($allCarInfo);
 
         // If the query returns results
-        if ($result->num_rows > 0) {
+        if($result->num_rows > 0) {
             // Output data of each row
             while($row = $result->fetch_assoc()) {
               echo("<tr><td>" . $row["NAME"] . "</td>

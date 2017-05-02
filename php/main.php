@@ -13,17 +13,28 @@
     return $data;
   }
 
-  // setDisplay(...) echos 'block;' or 'none;' depending on the input bool.
+  // setDisplay(...) echos the 'block;' or 'none;' display property depending on the input bool.
   // This function is used for displaying the correct content to the user on PHP pages.
   function setDisplay($bool) {
     if($bool)
-      echo("block;");
+      echo("style = 'display: block;'");
     else
-      echo("none;");
+      echo("style = 'display: none;'");
+  }
+
+  // includeHead(...) echos the uniform html head used accross all PHP pages
+  // inserting the given $title (a string) as the title of the page
+  function includeHead($title) {
+    echo('<head>
+      <link href="../styles/main.css" type="text/css" rel="stylesheet"/>
+      <link href="../resources/icon.png" rel="icon"/>
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <title>SCT | ' . $title . '</title>
+      </head>');
   }
 
   // includeHeader(...) echos the uniform html header used accross all PHP pages
-  // inserting the given $title (a string) as the title of the page
+  // inserting the given $title (a string) as the main heading of the page
   function includeHeader($title) {
     echo('<header>
       <a href="../index.html"><img src="../resources/large_sunburst.png"></a>
@@ -35,6 +46,6 @@
         <a href="systems.php">Systems</a>
         <a href="races.php">Races</a>
       </div>
-    </header>');
+      </header>');
   }
 ?>
