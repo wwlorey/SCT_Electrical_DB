@@ -4,6 +4,9 @@
   require_once('../php/db_connect.php');
   require_once('../php/main.php');
 
+  // Constants
+  define("PAGE_TITLE", "Cars");
+
   // Instantiate variables
   $newCarName = $yearCompleted = $selectCarName = $nameErr = $newCarOpen = $carInfoOpen = "";
   $newCarActive = $viewCarInfoActive = $submitSuccessful = False; // Used in displaying the correct elements and other content
@@ -21,7 +24,7 @@
   $allCarNames = "SELECT NAME FROM VEHICLE ORDER BY NAME";
 
   // Retrieve information about the drivers of a given car
-  // That car's name ("'$selectCarName';") is appended to the query once it is determined
+  // That car's name ("'$selectCarName';") is appended to the query once it is determined (from user input)
   $carAndDriverInfo = "SELECT CAR_NAME, TEAM_MEMBER.NAME, POSITION
   FROM TEAM_MEMBER, DRIVE, VEHICLE WHERE DRIVE.CAR_NAME = VEHICLE.NAME
   AND DRIVE.SSO = TEAM_MEMBER.SSO AND VEHICLE.NAME = ";
@@ -62,10 +65,10 @@
 ?>
 
 <html>
-<?php includeHead("Cars"); ?>
+<?php includeHead(PAGE_TITLE); ?>
 
 <body>
-  <?php includeHeader("Cars"); ?>
+  <?php includeHeader(PAGE_TITLE); ?>
 
   <!-- Submit new car form  -->
   <div class="form-wrapper">
@@ -168,11 +171,11 @@
 
         // If the query returns results
         if($result->num_rows > 0) {
-            // Output data of each row
-            while($row = $result->fetch_assoc()) {
-              echo("<tr><td>" . $row["NAME"] . "</td>
-                <td>" . $row["YEAR_COMPLETED"] . "</td></tr>");
-            }
+          // Output data of each row
+          while($row = $result->fetch_assoc()) {
+            echo("<tr><td>" . $row["NAME"] . "</td>
+              <td>" . $row["YEAR_COMPLETED"] . "</td></tr>");
+          }
         }
       ?>
     </table>

@@ -1,6 +1,9 @@
 <?php
   // Define database queries and updates, process form data
 
+  // Constants
+  define("PAGE_TITLE", "Races");
+
   require_once('../php/db_connect.php');
   require_once('../php/main.php');
 
@@ -114,10 +117,10 @@
 ?>
 
 <html>
-<?php includeHead("Races"); ?>
+<?php includeHead(PAGE_TITLE); ?>
 
 <body>
-  <?php includeHeader("Races"); ?>
+  <?php includeHeader(PAGE_TITLE); ?>
 
 
   <!-- Submit new race form  -->
