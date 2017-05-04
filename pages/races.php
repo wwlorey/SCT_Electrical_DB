@@ -177,8 +177,8 @@
 
   <!-- View car and their awards form - the user can select a car to see more info. about -->
   <div class="form-wrapper">
-    <h2>View Awards</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-race'); toggleVisible('race-info-view');"/>
+    <h2>View awards</h2>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-race'); toggleVisible('race-info-view'); toggleVisible('award-select-err');"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-race" <?php setDisplay($selectRaceInfoActive); ?>>
       <p>Select race name:</p>
@@ -231,6 +231,7 @@
         <br/><br/>
 
         <input type="submit" name="submit-date" value="See results"/>
+        <br/><br/>
       </div>
     </form>
 
@@ -252,7 +253,7 @@
             }
           }
           else if($selectRaceDate != "") {
-            echo("<p class='error'>There is no information for the given race.</p>");
+            echo("<p class='error' id='award-select-err'>There is no information for the given race.</p>");
           }
         }
       ?>
@@ -261,7 +262,7 @@
 
   <!-- See all races in the database -->
   <div class="form-wrapper">
-    <h2>View all Races</h2>
+    <h2>View all races</h2>
     <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-races');"/>
 
     <table id="all-races" style="display: none;">

@@ -18,7 +18,7 @@ submit-new-system<?php
   // Create SQL Prepared Statements - prepare then bind
   // NOTE: Prepared staements are reserved for database updates NOT queries and retrievals
   $insertSystem = $conn->prepare("INSERT INTO SYSTEM VALUES (?, ?, ?, ?)");
-  $insertSystem->bind_param("siss", $sysName, $revNo, $deadline, $status); // "siss" denotes the first parameter is a string, second parmeter is an int, string, string
+  $insertSystem->bind_param("ssss", $sysName, $revNo, $deadline, $status); // "siss" denotes the first parameter is a string, second parmeter is an int, string, string
 
   $insertComponent = $conn->prepare("INSERT INTO COMPONENT VALUES (?, ?, ?, ?, ?)");
   $insertComponent->bind_param("sssdi", $mfgNo, $type, $suppNo, $value, $noStock);
@@ -238,6 +238,7 @@ submit-new-system<?php
         echo("<option value='RES'>RES</option>");
         echo("<option value='CAP'>CAP</option>");
         echo("<option value='IND'>IND</option>");
+        echo("<option value='OTR'>OTR</option>");
       ?>
       </select>
       <span class="error">* <?php echo($typeErr);?></span>

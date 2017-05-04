@@ -106,7 +106,7 @@
   <!-- View car drivers form - the user can select a car to see more info. about -->
   <div class="form-wrapper">
     <h2>View drivers</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('driver-view');"/>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('driver-view'); toggleVisible('driver-view-err');"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" <?php setDisplay($viewCarInfoActive); ?>>
       <p>Select car name:</p>
@@ -149,7 +149,7 @@
           }
         }
         else if($selectCarName != "") {
-          echo("<p class='error'>There are no recorded drivers for the given vehicle.</p>");
+          echo("<p class='error' id='driver-view-err'>There are no recorded drivers for the given vehicle.</p>");
         }
       ?>
     </table>
