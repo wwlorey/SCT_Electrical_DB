@@ -24,7 +24,7 @@
   $allRaceInfo = "SELECT * FROM COMPETITION ORDER BY DATE";
 
   // Retrieve all names of races
-  $allRaceNames = "SELECT TITLE FROM COMPETITION ORDER BY TITLE";
+  $allRaceNames = "SELECT DISTINCT TITLE FROM COMPETITION ORDER BY TITLE";
 
   // Retrieve all race dates given a race name (which needs to be appended later)
   $raceDates = "SELECT DATE FROM COMPETITION WHERE TITLE = ";

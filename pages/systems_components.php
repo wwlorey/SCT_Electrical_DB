@@ -1,4 +1,4 @@
-submit-new-system<?php
+<?php
   // Define database queries and updates, process form data
 
   require_once('../php/db_connect.php');
@@ -84,13 +84,7 @@ submit-new-system<?php
       }
     }
 
-
-
-
     if(!empty($_POST['submit-new-component'])) { // The new component form has new input
-      echo("IN NEW COMPONENT");
-
-
       $newComponentActive = True;
       $newSystemActive = False;
       $viewSystemInfoActive = False;
@@ -137,9 +131,6 @@ submit-new-system<?php
         $submitSuccessfulComponent = True;
       }
     }
-
-
-
   }
   // NOTE: There is no need to validate input from drop down menus
 ?>
