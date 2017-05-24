@@ -76,8 +76,8 @@
   <?php includeHeader(PAGE_TITLE) ?>
 
   <div class="form-wrapper">
-    <h2>Record new team member</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-member');"/>
+    <label for="form1"><h2>Record new team member</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-member');" id="form1"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-member" <?php setDisplay($newMemberActive); ?>>
 
@@ -107,8 +107,8 @@
   </div>
 
   <div class="form-wrapper">
-    <h2>View project assignments</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-system'); toggleVisible('system-view'); toggleVisible('system-info-err');"/>
+    <label for="form2"><h2>View project assignments</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-system'); toggleVisible('system-view'); toggleVisible('system-info-err');" id="form2"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-system" <?php setDisplay($viewSystemInfoActive); ?>>
       <p>Select a project:</p>
@@ -159,8 +159,8 @@
   </div>
 
   <div class="form-wrapper">
-    <h2>View all members</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('allMembers-table');"/>
+    <label for="form3"><h2>View all members</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('allMembers-table');" id="form3"/>
 
     <table id="allMembers-table" style="display: none;">
       <tr>

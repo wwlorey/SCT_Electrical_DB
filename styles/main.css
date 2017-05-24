@@ -33,7 +33,6 @@ header {
   height: 3.5em;
   background-color: #F5F5F5;
   z-index: 1;
-  min-width: 750px;
 }
 
 header * {
@@ -141,4 +140,56 @@ header img {
 
 .success {
   color: green;
+}
+
+label {
+  cursor: pointer;
+}
+
+/* Screen width less than 1000px */
+@media only screen and (max-width: 1000px) {
+  #welcome {
+    padding-top: 12%;
+  }
+}
+
+/* Screen width less than 752px */
+@media only screen and (max-width: 752px) {
+  #nav {
+    margin-right: 0;
+    position: fixed;
+    top: 3.2em;
+    background-color: #F5F5F5;
+    width: 100%;
+    text-align: center;
+  }
+
+  #nav a {
+    line-height: 1.5em;
+  }
+
+  #form1 {
+    margin-top: 100px;
+  }
+}
+
+/* Screen width less than 650px */
+@media only screen and (max-width: 650px) {
+  #welcome {
+    padding-top: 30%;
+  }
+}
+
+/* Screen width less than 400px */
+@media only screen and (max-width: 400px) {
+  #welcome {
+    padding-top: 35%;
+  }
+}
+
+/* Screen height greater than 1000px and width less than 780*/
+@media only screen and (min-height: 1000px) and (max-width: 780px) {
+  #welcome {
+    padding-top: 38%;
+  }
 }

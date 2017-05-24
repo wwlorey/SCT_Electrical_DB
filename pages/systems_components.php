@@ -143,8 +143,8 @@
 
   <!-- Submit new component form  -->
   <div class="form-wrapper">
-    <h2>Record new system</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-system');"/>
+    <label for="form1"><h2>Record new system</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-system');" id="form1"/>
 
     <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-system" <?php setDisplay($newSystemActive); ?>>
@@ -184,8 +184,8 @@
 
   <!-- See all systems in the database -->
   <div class="form-wrapper">
-    <h2>View all systems</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-systems');"/>
+    <label for="form2"><h2>View all systems</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-systems');" id="form2"/>
 
     <table id="all-systems" style="display: none;">
       <tr>
@@ -213,8 +213,8 @@
 
   <!-- Submit new component form  -->
   <div class="form-wrapper">
-    <h2>Record new component</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-component');"/>
+    <label for="form3"><h2>Record new component</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-component');" id="form3"/>
 
     <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-component" <?php setDisplay($newComponentActive); ?>>
@@ -259,8 +259,8 @@
 
   <!-- See all components in the database -->
   <div class="form-wrapper">
-    <h2>View all components</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-components');"/>
+    <label for="form4"><h2>View all components</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-components');" id="form4"/>
 
     <table id="all-components" style="display: none;">
       <tr>

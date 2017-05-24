@@ -125,8 +125,8 @@
 
   <!-- Submit new race form  -->
   <div class="form-wrapper">
-    <h2>Record new race</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-race');"/>
+    <label for="form1"><h2>Record new race</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-race');" id="form1"/>
 
     <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-race" <?php setDisplay($insertRaceActive); ?>>
@@ -177,8 +177,8 @@
 
   <!-- View car and their awards form - the user can select a car to see more info. about -->
   <div class="form-wrapper">
-    <h2>View awards</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-race'); toggleVisible('race-info-view'); toggleVisible('award-select-err');"/>
+    <label for="form2"><h2>View awards</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-race'); toggleVisible('race-info-view'); toggleVisible('award-select-err');" id="form2"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-race" <?php setDisplay($selectRaceInfoActive); ?>>
       <p>Select race name:</p>
@@ -262,8 +262,8 @@
 
   <!-- See all races in the database -->
   <div class="form-wrapper">
-    <h2>View all races</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-races');"/>
+    <label for="form3"><h2>View all races</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-races');" id="form3"/>
 
     <table id="all-races" style="display: none;">
       <tr>

@@ -72,8 +72,8 @@
 
   <!-- Submit new car form  -->
   <div class="form-wrapper">
-    <h2>Record new car</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-car');"/>
+    <label for="form1"><h2>Record new car</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('submit-new-car');" id="form1"/>
 
     <!-- Each interactive form element's display is set based on which form the user is using with setDisplay(...) (see input processing above) -->
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="submit-new-car" <?php setDisplay($newCarActive); ?>>
@@ -105,8 +105,8 @@
 
   <!-- View car drivers form - the user can select a car to see more info. about -->
   <div class="form-wrapper">
-    <h2>View drivers</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('driver-view'); toggleVisible('driver-view-err');"/>
+    <label for="form2"><h2>View drivers</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('choose-car'); toggleVisible('driver-view'); toggleVisible('driver-view-err');" id="form2"/>
 
     <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" id="choose-car" <?php setDisplay($viewCarInfoActive); ?>>
       <p>Select car name:</p>
@@ -158,8 +158,8 @@
 
   <!-- See all cars in the database -->
   <div class="form-wrapper">
-    <h2>View all solar cars</h2>
-    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-cars');"/>
+    <label for="form3"><h2>View all solar cars</h2></label>
+    <input type="image" src="../resources/dropdown_arrow.png" class="show-hide" onclick="toggleVisible('all-cars');" id="form3"/>
 
     <table id="all-cars" style="display: none;">
       <tr>

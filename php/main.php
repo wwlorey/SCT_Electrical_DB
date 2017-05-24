@@ -37,8 +37,8 @@
   // inserting the given $title (a string) as the main heading of the page
   function includeHeader($title) {
     echo('<header>
-      <a href="../index.html"><img src="../resources/large_sunburst.png"></a>
-      <h1>SCT | ' . $title . '</h1>
+      <label for="sunburst"><a href="../index.html"><img src="../resources/large_sunburst.png"></a></label>
+      <h1 id="sunburst">SCT | ' . $title . '</h1>
 
       <div id="nav">
         <a href="team_members.php">Team Members</a>
